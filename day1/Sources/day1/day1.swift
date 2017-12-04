@@ -1,33 +1,37 @@
-func matchDigits(puzzleText: String) -> Int {
-    var charArray = addFirstCharToEnd(input: puzzleText)
-    
-    var runningTotal: Int = 0
-    guard var lastChar = charArray.first else {
-        return 0
+typealias ComparisonFunc = (String, Int) -> Character
+
+func partOne(puzzleText: String) -> Int {
+    return solve(puzzleText: puzzleText, compare: partOneComparisonFunc)
+}
+
+private func partOneComparisonFunc(seedData: String, position: Int) -> Character {
+    if seedData.count - 1 == position {
+        return seedData[seedData.index(seedData.startIndex, offsetBy: 0)]
     }
+    return seedData[seedData.index(seedData.startIndex, offsetBy: position + 1)]
+}
+
+func partTwo(puzzleText: String) -> Int {
+    return solve(puzzleText: puzzleText, compare: partTwoComparisonFunc)
+}
+
+private func partTwoComparisonFunc(seedData: String, position: Int) -> Character {
+    let halfSize = seedData.count / 2
+    let doubleList = seedData + seedData
     
-    charArray.remove(at: puzzleText.startIndex)
+    let offset = position + halfSize
+    let index = doubleList.index(doubleList.startIndex, offsetBy: offset)
+    return doubleList[index]
+}
+
+private func solve(puzzleText: String, compare: ComparisonFunc) -> Int {
+    var runningTotal = 0
     
-    for c in charArray {
-        if c == lastChar {
+    for (index, c) in puzzleText.enumerated() {
+        if c == compare(puzzleText, index) {
             runningTotal += Int(String(c))!
         }
-        lastChar = c
     }
     
     return runningTotal
-}
-
-func addFirstCharToEnd(input: String) -> String.CharacterView {
-    if input.count == 0 {
-        return String.CharacterView()
-    }
-    
-    var allChars = input.characters
-    
-    if let firstChar = input.first {
-        allChars.append(firstChar)
-    }
-    
-    return allChars
 }

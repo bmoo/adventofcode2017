@@ -1,27 +1,23 @@
 typealias ComparisonFunc = (String, Int) -> Character
 
 func partOne(puzzleText: String) -> Int {
-    return solve(puzzleText: puzzleText, compare: partOneComparisonFunc)
-}
-
-private func partOneComparisonFunc(seedData: String, position: Int) -> Character {
-    if seedData.count - 1 == position {
-        return seedData[seedData.index(seedData.startIndex, offsetBy: 0)]
-    }
-    return seedData[seedData.index(seedData.startIndex, offsetBy: position + 1)]
+    return solve(puzzleText: puzzleText, compare: { (numberList: String, position: Int) -> Character in
+        if numberList.count - 1 == position {
+            return numberList[numberList.index(numberList.startIndex, offsetBy: 0)]
+        }
+        return numberList[numberList.index(numberList.startIndex, offsetBy: position + 1)]
+    })
 }
 
 func partTwo(puzzleText: String) -> Int {
-    return solve(puzzleText: puzzleText, compare: partTwoComparisonFunc)
-}
+    return solve(puzzleText: puzzleText, compare: { (numberList: String, position: Int) -> Character in
+        let halfSize = numberList.count / 2
+        let doubleList = numberList + numberList
 
-private func partTwoComparisonFunc(seedData: String, position: Int) -> Character {
-    let halfSize = seedData.count / 2
-    let doubleList = seedData + seedData
-    
-    let offset = position + halfSize
-    let index = doubleList.index(doubleList.startIndex, offsetBy: offset)
-    return doubleList[index]
+        let offset = position + halfSize
+        let index = doubleList.index(doubleList.startIndex, offsetBy: offset)
+        return doubleList[index]
+    })
 }
 
 private func solve(puzzleText: String, compare: ComparisonFunc) -> Int {

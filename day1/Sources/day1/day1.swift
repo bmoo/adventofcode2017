@@ -1,7 +1,7 @@
 typealias ComparisonFunc = (String, Int) -> Character
 
-func partOne(puzzleText: String) -> Int {
-    return solve(puzzleText: puzzleText, compare: { (numberList: String, position: Int) -> Character in
+func partOne(_ puzzleText: String) -> Int {
+    return solve(puzzleText, comparisonFunc: { (numberList: String, position: Int) -> Character in
         if numberList.count - 1 == position {
             return numberList[numberList.index(numberList.startIndex, offsetBy: 0)]
         }
@@ -9,8 +9,8 @@ func partOne(puzzleText: String) -> Int {
     })
 }
 
-func partTwo(puzzleText: String) -> Int {
-    return solve(puzzleText: puzzleText, compare: { (numberList: String, position: Int) -> Character in
+func partTwo(_ puzzleText: String) -> Int {
+    return solve(puzzleText, comparisonFunc: { (numberList: String, position: Int) -> Character in
         let halfSize = numberList.count / 2
         let doubleList = numberList + numberList
 
@@ -20,7 +20,7 @@ func partTwo(puzzleText: String) -> Int {
     })
 }
 
-private func solve(puzzleText: String, compare: ComparisonFunc) -> Int {
+private func solve(_ puzzleText: String, comparisonFunc compare: ComparisonFunc) -> Int {
     var runningTotal = 0
     
     for (index, c) in puzzleText.enumerated() {

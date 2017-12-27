@@ -7,48 +7,48 @@ class day1Tests: XCTestCase {
 """
     
     func testPart1Empty() {
-        XCTAssertEqual(partOne(puzzleText: ""), 0)
+        XCTAssertEqual(partOne(""), 0)
     }
 
     func testPart1First() {
-        XCTAssertEqual(partOne(puzzleText: "1122"), 3)
+        XCTAssertEqual(partOne("1122"), 3)
     }
 
     func testPart1Second() {
-        XCTAssertEqual(partOne(puzzleText: "1111"), 4)
+        XCTAssertEqual(partOne("1111"), 4)
     }
     func testPart1Third() {
-        XCTAssertEqual(partOne(puzzleText: "1234"), 0)
+        XCTAssertEqual(partOne("1234"), 0)
     }
     func testPart1Fourth() {
-        XCTAssertEqual(partOne(puzzleText: "91212129"), 9)
+        XCTAssertEqual(partOne("91212129"), 9)
     }
     func testPart1Puzzle() {
-        print("The answer to part one is \(partOne(puzzleText: puzzleInput))")
+        print("The answer to part one is \(partOne(puzzleInput))")
     }
     
     func testPart2First() {
-        XCTAssertEqual(partTwo(puzzleText: "1212"), 6)
+        XCTAssertEqual(partTwo("1212"), 6)
     }
 
     func testPart2Second() {
-        XCTAssertEqual(partTwo(puzzleText: "1221"), 0)
+        XCTAssertEqual(partTwo("1221"), 0)
     }
     
     func testPart2Third() {
-        XCTAssertEqual(partTwo(puzzleText: "123425"), 4)
+        XCTAssertEqual(partTwo("123425"), 4)
     }
     
     func testPart2Fourth() {
-        XCTAssertEqual(partTwo(puzzleText: "123123"), 12)
+        XCTAssertEqual(partTwo("123123"), 12)
     }
     
     func testPart2Fifth() {
-        XCTAssertEqual(partTwo(puzzleText: "12131415"), 4)
+        XCTAssertEqual(partTwo("12131415"), 4)
     }
     
     func testPart2Puzzle() {
-        print("The answer to part two is \(partTwo(puzzleText: puzzleInput))")
+        print("The answer to part two is \(partTwo(puzzleInput))")
     }
     
     static var allTests = [
